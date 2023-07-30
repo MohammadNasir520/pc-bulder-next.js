@@ -8,7 +8,7 @@ import Link from "next/link";
 const ProductCard = () => {
     const product = {
         name: "nasir",
-        image: "",
+        image: "https://www.startech.com.bd/image/cache/catalog/laptop/toshiba/satellite-pro-c40-g-109/satellite-pro-c40-g-109-01-500x500.webp",
         _id: 3,
         author: "author",
         publicationDate: "ksd",
@@ -20,10 +20,10 @@ const ProductCard = () => {
     return (
         <div>
             <div className="my-2 ">
-                <Link href={`/productdetails/${_id}`}>
-                    <div className="relative flex min-w-[350px] max-w-[20rem] h-[550px] flex-col rounded-xl bg-blue-gray-200 bg-clip-border text-gray-700 shadow-2xl">
+                <div className="relative flex min-w-[350px] max-w-[20rem]  flex-col rounded-xl bg-blue-gray-50 bg-clip-border text-gray-700 shadow-2xl">
+                    <Link href={`/productdetails/${_id}`}>
                         <div className="relative m-0 p-4 pb-1 flex justify-center overflow-hidden rounded-none bg-transparent bg-clip-border text-gray-700 shadow-none">
-                            <Image
+                            <img
                                 className=" min-h-[300px] max-h-[350px] min-w-[280px] max-w-[20rem]   rounded-sm "
                                 src={image}
                                 alt="product"
@@ -118,8 +118,8 @@ const ProductCard = () => {
                                 </h3>
                             </div>
                         </div>
-                    </div>
-                </Link>
+                    </Link>
+                </div>
 
             </div>
         </div>

@@ -13,6 +13,7 @@ import {
     MenuItem,
 } from "@material-tailwind/react";
 import { ChevronDownIcon, RocketLaunchIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 export default function NavBar() {
     const [openNav, setOpenNav] = React.useState(false);
@@ -26,7 +27,7 @@ export default function NavBar() {
 
     const NavItems = [
         {
-            title: "processor",
+            title: "Processor",
             itemId: 1,
             dropOptions: [
                 {
@@ -158,11 +159,11 @@ export default function NavBar() {
             {NavItems.map((navItem) =>
                 <Menu key={navItem?.itemId} placement="bottom-start">
                     <MenuHandler >
-                        <Typography
+                        <h2
                             variant="small"
                             color="blue-gray"
                             className='cursor-pointer'>
-                            <span className="flex items-center">
+                            <span className="flex items-center  font-sans">
                                 {navItem?.title}
                                 <ChevronDownIcon
                                     strokeWidth={2.5}
@@ -171,12 +172,12 @@ export default function NavBar() {
                                 />
                             </span>
 
-                        </Typography>
+                        </h2>
                     </MenuHandler>
                     <MenuList>
                         {
                             navItem?.dropOptions?.map((dropOption) =>
-                                <MenuItem key={dropOption?.id}>{dropOption?.title}</MenuItem>
+                                <MenuItem className=" font-sans" key={dropOption?.id}>{dropOption?.title}</MenuItem>
                             )
                         }
 
@@ -190,17 +191,23 @@ export default function NavBar() {
     return (
         <Navbar className="mx-auto  py-2 px-4 lg:px-8 lg:py-4">
             <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
-                <Typography
-                    as="a"
-                    href="#"
-                    className="mr-4 cursor-pointer py-1.5 font-medium"
-                >
-                    Material Tailwind
-                </Typography>
+                <Link href={'/'}>
+                    <Typography
+
+                        className="mr-4 cursor-pointer py-1.5 font-medium font-sans"
+
+                    >
+                        PC Builder
+                    </Typography>
+                </Link>
+
                 <div className="hidden lg:block">{navList}</div>
-                <Button variant="gradient" size="sm" className="hidden lg:inline-block">
-                    <span>Buy Now</span>
-                </Button>
+
+                <Link href={'/pcbuilder'}>
+                    <Button variant="outlined" size="sm" className="hidden lg:inline-block ">
+                        <span >PC BUILDER</span>
+                    </Button>
+                </Link>
                 <IconButton
                     variant="text"
                     className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -242,8 +249,8 @@ export default function NavBar() {
             <MobileNav open={openNav}>
                 <div className="container mx-auto">
                     {navList}
-                    <Button variant="gradient" size="sm" fullWidth className="mb-2">
-                        <span>Buy Now</span>
+                    <Button variant="outlined" size="sm" fullWidth className="mb-2">
+                        <span>PC BUILDER</span>
                     </Button>
                 </div>
             </MobileNav>
