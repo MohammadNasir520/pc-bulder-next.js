@@ -1,43 +1,15 @@
 
+import { addToStor } from "@/redux/feature/component/componentSlice";
 import { Button } from "@material-tailwind/react";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
 
 
-const categoryComponents = ({ components }) => {
-    console.log(components)
-    const categories = [
-        {
-            id: 1,
-            title: 'Processor',
-            image: "https://www.startech.com.bd/image/cache/catalog/processor/amd/ryzen-3-3200g/ryzen-3-3200g-3-500x500.jpg"
-        },
-        {
-            id: 2,
-            title: 'Monitor',
-            image: "https://www.startech.com.bd/image/cache/catalog/monitor/walton/wd215v04/wd215v04-01-500x500.webp"
-        },
-        {
-            id: 3,
-            title: 'MotherBoard',
-            image: "https://www.startech.com.bd/image/cache/catalog/Motherboard/Gigabyte/Gigabyte%20GA-H110M%20S2PH-DDR4-500x500.jpg"
-        },
-        {
-            id: 4,
-            title: 'PowerSupply',
-            image: "https://www.startech.com.bd/image/cache/catalog/power-supply/Antec/neoeco-gold-650w/neoeco-gold-650w-01-500x500.webp"
-        },
-        {
-            id: 5,
-            title: 'Ram',
-            image: "https://www.startech.com.bd/image/cache/catalog/ram/lexar/16gb-ddr4-3200mhz/16gb-ddr4-3200mhz-01-500x500.webp"
-        },
-        {
-            id: 6,
-            title: 'StorageUnit',
-            image: "https://www.startech.com.bd/image/cache/catalog/server-accessories/ssd/dell/ssd-240gb-500x500.jpg"
-        },
-    ]
+const CategoryComponents = ({ components }) => {
+    const storedComponents = useSelector(state => state.components)
+    console.log(storedComponents)
 
+    const dispatch = useDispatch()
 
 
     return (
@@ -112,7 +84,10 @@ const categoryComponents = ({ components }) => {
                             <td className="px-6 py-4">
                                 <div className="flex gap-2">
 
-                                    <Button size="sm"> Add </Button>
+                                    <Button
+                                        onClick={() => dispatch(addToStor(component))}
+                                        size="sm"
+                                    > Add </Button>
 
                                 </div>
                             </td>
@@ -124,7 +99,7 @@ const categoryComponents = ({ components }) => {
     );
 };
 
-export default categoryComponents;
+export default CategoryComponents;
 
 export const getServerSideProps = async (context) => {
     const { params } = context
