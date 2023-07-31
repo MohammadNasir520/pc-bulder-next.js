@@ -3,37 +3,38 @@ import Link from "next/link";
 
 
 const PcBuilder = () => {
-    const products = [
+    const categories = [
         {
-            category: "processor",
             id: 1,
-            imageUrl: "https://pictures.abebooks.com/inventory/31367552755.jpg",
-            email: "category",
-            role: "admin",
-            district: "sirajgonj",
-            batch: "2020",
+            title: 'Processor',
+            image: "https://www.startech.com.bd/image/cache/catalog/processor/amd/ryzen-3-3200g/ryzen-3-3200g-3-500x500.jpg"
         },
         {
-            category: "motherboard",
             id: 2,
-            imageUrl: "https://pictures.abebooks.com/inventory/31367552755.jpg",
-            email: "category",
-            role: "admin",
-            district: "sirajgonj",
-            batch: "2020",
+            title: 'Monitor',
+            image: "https://www.startech.com.bd/image/cache/catalog/monitor/walton/wd215v04/wd215v04-01-500x500.webp"
         },
         {
-            category: "Monitor",
             id: 3,
-            imageUrl: "https://pictures.abebooks.com/inventory/31367552755.jpg",
-            email: "category",
-            role: "admin",
-            district: "sirajgonj",
-            batch: "2020",
+            title: 'MotherBoard',
+            image: "https://www.startech.com.bd/image/cache/catalog/Motherboard/Gigabyte/Gigabyte%20GA-H110M%20S2PH-DDR4-500x500.jpg"
         },
-    ];
-
-
+        {
+            id: 4,
+            title: 'PowerSupply',
+            image: "https://www.startech.com.bd/image/cache/catalog/power-supply/Antec/neoeco-gold-650w/neoeco-gold-650w-01-500x500.webp"
+        },
+        {
+            id: 5,
+            title: 'Ram',
+            image: "https://www.startech.com.bd/image/cache/catalog/ram/lexar/16gb-ddr4-3200mhz/16gb-ddr4-3200mhz-01-500x500.webp"
+        },
+        {
+            id: 6,
+            title: 'StorageUnit',
+            image: "https://www.startech.com.bd/image/cache/catalog/server-accessories/ssd/dell/ssd-240gb-500x500.jpg"
+        },
+    ]
 
 
     return (
@@ -46,10 +47,10 @@ const PcBuilder = () => {
                             categories
                         </th>
                         <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-                            Genre
+                            Added Components
                         </th>
                         <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-                            Publication Date
+                            Price
                         </th>
 
                         <th scope="col" className="px-6 py-4 font-medium text-gray-900">
@@ -58,34 +59,34 @@ const PcBuilder = () => {
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-                    {products?.map((product) => (
-                        <tr key={product?.id} className="hover:bg-gray-50">
-                            <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
-                                <div className="h-10 w-10">
+                    {categories?.map((category) => (
+                        <tr key={category?.id} className="hover:bg-gray-50">
+                            <th className="flex gap-3 px-6 py-4 font-normal items-center text-gray-900">
+                                <div className="h-24 w-24">
                                     <img
                                         className="h-full w-full  object-cover object-center"
-                                        src={product.imageUrl}
+                                        src={category.image}
                                         alt=""
                                     />
 
                                 </div>
                                 <div className="text-sm">
-                                    <div className="font-medium text-gray-700">{product?.category}</div>
-                                    <div className="text-gray-400">{product?.email}</div>
+                                    <div className="font-semibold">{category?.title}</div>
+                                    <div className="font-medium text-gray-700">Required</div>
                                 </div>
                             </th>
 
                             {/* batch */}
                             <td className="px-6 py-4">
                                 <span className="inline-flex items-center gap-1    py-1  font-semibold">
-                                    {product?.batch}
+                                    {category?.batch}
                                 </span>
                             </td>
-                            <td className="px-6 py-4">{product?.district}</td>
+                            <td className="px-6 py-4">{category?.district}</td>
 
                             <td className="px-6 py-4">
                                 <div className="flex gap-2">
-                                    <Link href={`/productComponents/${product?.id}`}>
+                                    <Link href={`/productComponents/${category?.title}`}>
                                         <Button size="sm">Choose</Button>
                                     </Link>
                                 </div>

@@ -163,7 +163,7 @@ export default function NavBar() {
                             variant="small"
                             color="blue-gray"
                             className='cursor-pointer'>
-                            <span className="flex items-center  font-sans">
+                            <span className="flex items-center text-blue-gray-900 font-sans">
                                 {navItem?.title}
                                 <ChevronDownIcon
                                     strokeWidth={2.5}

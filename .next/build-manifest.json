@@ -27,10 +27,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/pcbuilder.js"
     ],
-    "/productComponents/[componentCategoriesId]": [
+    "/productComponents/[category]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/productComponents/[componentCategoriesId].js"
+      "static/chunks/pages/productComponents/[category].js"
     ]
   },
   "ampFirstPages": []

@@ -3,5 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/pcbuilder": "pages/pcbuilder.js",
-  "/productComponents/[componentCategoriesId]": "pages/productComponents/[componentCategoriesId].js"
+  "/productComponents/[category]": "pages/productComponents/[category].js"
 }

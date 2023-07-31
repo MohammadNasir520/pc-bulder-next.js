@@ -5,22 +5,14 @@ import Link from "next/link";
 
 
 
-const ProductCard = () => {
-    const product = {
-        name: "nasir",
-        image: "https://www.startech.com.bd/image/cache/catalog/laptop/toshiba/satellite-pro-c40-g-109/satellite-pro-c40-g-109-01-500x500.webp",
-        _id: 3,
-        author: "author",
-        publicationDate: "ksd",
-        genre: "ksd"
-    }
-    const { name, author, genre, image, publicationDate, _id } = product;
+const ProductCard = ({ product }) => {
+    const { name, category, price, image, status, _id } = product;
 
 
     return (
         <div>
-            <div className="my-2 ">
-                <div className="relative flex min-w-[350px] max-w-[20rem]  flex-col rounded-xl bg-blue-gray-50 bg-clip-border text-gray-700 shadow-2xl">
+            <div className="my-2  ">
+                <div className="relative flex min-w-[350px] max-w-[20rem] min-h  mx-auto flex-col rounded-xl bg-blue-gray-50 bg-clip-border text-gray-700 shadow-2xl">
                     <Link href={`/productdetails/${_id}`}>
                         <div className="relative m-0 p-4 pb-1 flex justify-center overflow-hidden rounded-none bg-transparent bg-clip-border text-gray-700 shadow-none">
                             <img
@@ -54,7 +46,7 @@ const ProductCard = () => {
                         </div>
 
                         <div className="px-3">
-                            {/* author  */}
+                            {/* category  */}
                             <div className=" flex space-x-2 items-center py-0">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -72,11 +64,11 @@ const ProductCard = () => {
                                 </svg>
 
                                 <h3 className=" block font-sans text-lg font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-                                    {author}
+                                    {category}
                                 </h3>
                             </div>
 
-                            {/* Genre */}
+                            {/* price */}
                             <div className=" flex space-x-2 items-center mb-1">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +85,7 @@ const ProductCard = () => {
                                     />
                                 </svg>
                                 <h3 className=" block font-sans text-lg font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-                                    {genre}
+                                    {price}
                                 </h3>
                             </div>
                             {/*publication date*/}
@@ -114,7 +106,7 @@ const ProductCard = () => {
                                 </svg>
 
                                 <h3 className=" block font-sans text-md font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-                                    {publicationDate.toString()}
+                                    {status.toString()}
                                 </h3>
                             </div>
                         </div>
