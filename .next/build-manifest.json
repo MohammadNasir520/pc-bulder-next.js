@@ -22,6 +22,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/pcbuilder": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/pcbuilder.js"
+    ],
     "/productComponents/[category]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

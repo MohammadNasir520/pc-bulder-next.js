@@ -1,5 +1,6 @@
 import { Button } from "@material-tailwind/react";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 
 const PcBuilder = () => {
@@ -36,6 +37,10 @@ const PcBuilder = () => {
         },
     ]
 
+    const { components } = useSelector(state => state.components)
+    console.log('com', components)
+
+
 
     return (
 
@@ -49,9 +54,7 @@ const PcBuilder = () => {
                         <th scope="col" className="px-6 py-4 font-medium text-gray-900">
                             Added Components
                         </th>
-                        <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-                            Price
-                        </th>
+
 
                         <th scope="col" className="px-6 py-4 font-medium text-gray-900">
                             choose
@@ -76,13 +79,61 @@ const PcBuilder = () => {
                                 </div>
                             </th>
 
-                            {/* batch */}
-                            <td className="px-6 py-4">
-                                <span className="inline-flex items-center gap-1    py-1  font-semibold">
-                                    {category?.batch}
-                                </span>
-                            </td>
-                            <td className="px-6 py-4">{category?.district}</td>
+                            {/* added components */}
+                            {components.find(component => component.category === category.title) ?
+                                components.filter(component => component.category === category.title)?.map(
+                                    component =>
+
+                                        <>
+                                            <td className="px-6 py-4 ">
+                                                <div className="flex items-center gap-1">
+                                                    <div className="h-24 w-24">
+                                                        <img
+                                                            className="h-full w-full  object-cover object-center"
+                                                            src={component.image} alt="" />
+                                                    </div>
+                                                    <div>
+                                                        <div className="font-medium flex items-center gap-x-1">
+                                                            rating:
+                                                            <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 24 24"
+                                                                fill="currentColor"
+                                                                className="-mt-0.5 h-5 w-5 text-yellow-700"
+                                                            >
+                                                                <path
+                                                                    fillRule="evenodd"
+                                                                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                                                                    clipRule="evenodd"
+                                                                />
+                                                            </svg>
+                                                            {component?.rating}
+                                                        </div>
+
+                                                        <p> price:   {component.price}</p>
+                                                    </div>
+
+                                                </div>
+
+                                                <span className="inline-flex items-center    py-1  font-semibold">
+                                                    {(component?.name)}
+                                                </span>
+
+                                            </td>
+
+                                        </>
+                                )
+                                :
+                                <>
+                                    <td>
+                                        <h1
+                                            className="text-md text-gray-700 font-semibold"
+                                        > please select {category.title} First
+                                        </h1>
+                                    </td>
+                                </>
+                            }
+
 
                             <td className="px-6 py-4">
                                 <div className="flex gap-2">
@@ -95,7 +146,7 @@ const PcBuilder = () => {
                     ))}
                 </tbody>
             </table>
-        </div>
+        </div >
     );
 };
 
