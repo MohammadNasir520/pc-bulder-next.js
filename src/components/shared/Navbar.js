@@ -11,6 +11,7 @@ import {
     MenuHandler,
     MenuList,
     MenuItem,
+    Collapse,
 } from "@material-tailwind/react";
 import { ChevronDownIcon, RocketLaunchIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
@@ -246,14 +247,14 @@ export default function NavBar() {
                     )}
                 </IconButton>
             </div>
-            <MobileNav open={openNav}>
+            <Collapse open={openNav}>
                 <div className="container mx-auto">
                     {navList}
                     <Button variant="outlined" size="sm" fullWidth className="mb-2">
                         <span>PC BUILDER</span>
                     </Button>
                 </div>
-            </MobileNav>
+            </Collapse>
         </Navbar>
     );
 }

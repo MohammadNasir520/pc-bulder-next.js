@@ -84,10 +84,14 @@ const CategoryComponents = ({ components }) => {
                             <td className="px-6 py-4">
                                 <div className="flex gap-2">
 
+                                    {/* <Link href={'/pcbuilder'}> */}
                                     <Button
                                         onClick={() => dispatch(addToStor(component))}
                                         size="sm"
-                                    > Add </Button>
+                                    >
+                                        Add
+                                    </Button>
+                                    {/* </Link> */}
 
                                 </div>
                             </td>

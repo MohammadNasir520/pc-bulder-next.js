@@ -64,7 +64,7 @@ export default function FeaturedCard() {
                                     backgroundImage: `url('${item.image}')`
 
                                 }}
-                                className="absolute inset-0 m-0 h-full w-full rounded-none bg-[url('')] bg-cover object-cover bg-center"
+                                className="absolute inset-0 m-0 h-full w-full rounded-none  bg-cover object-cover bg-center"
                             >
                                 <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
                             </CardHeader>

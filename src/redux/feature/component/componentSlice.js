@@ -9,12 +9,18 @@ export const componentSlice = createSlice({
     initialState,
     reducers: {
         addToStor: (state, action) => {
-            state.components.push({ ...action.payload })
+            const existingComponentIndex = state.components.findIndex(component => component.category === action.payload.category)
+            if (existingComponentIndex >= 0) {
+                state.components[existingComponentIndex] = action.payload
+
+            } else {
+
+                state.components.push({ ...action.payload })
+            }
+
         }
     },
 })
-
-
 export const { addToStor } = componentSlice.actions
 
 export default componentSlice.reducer

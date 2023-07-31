@@ -5,6 +5,8 @@ import "@/styles/globals.css";
 
 import { ThemeProvider } from "@material-tailwind/react";
 import { Provider } from "react-redux";
+import { Toaster } from 'react-hot-toast';
+
 
 export default function App({ Component, pageProps }) {
   return (
@@ -12,6 +14,7 @@ export default function App({ Component, pageProps }) {
       <Provider store={store}>
         <NavBar></NavBar>
         <Component {...pageProps} />
+        <Toaster />
         <Footer></Footer>
       </Provider>
     </ThemeProvider>
