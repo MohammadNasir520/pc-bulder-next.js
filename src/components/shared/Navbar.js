@@ -3,18 +3,172 @@
 import React from "react";
 import {
     Navbar,
-    MobileNav,
+    Collapse,
     Typography,
     Button,
     IconButton,
+    List,
+    ListItem,
     Menu,
     MenuHandler,
     MenuList,
     MenuItem,
-    Collapse,
+    Chip,
 } from "@material-tailwind/react";
-import { ChevronDownIcon, RocketLaunchIcon } from "@heroicons/react/24/outline";
+import {
+    ChevronDownIcon,
+    UserCircleIcon,
+    CubeTransparentIcon,
+    Bars3Icon,
+    XMarkIcon,
+    FlagIcon,
+    ChatBubbleOvalLeftIcon,
+    UsersIcon,
+    FolderIcon,
+    Square3Stack3DIcon,
+    RocketLaunchIcon,
+    FaceSmileIcon,
+    PuzzlePieceIcon,
+    GiftIcon,
+} from "@heroicons/react/24/outline";
 import Link from "next/link";
+
+const colors = {
+    blue: "bg-blue-50 text-blue-500",
+    orange: "bg-orange-50 text-orange-500",
+    green: "bg-green-50 text-green-500",
+    "blue-gray": "bg-blue-gray-50 text-blue-gray-500",
+    purple: "bg-purple-50 text-purple-500",
+    teal: "bg-teal-50 text-teal-500",
+    cyan: "bg-cyan-50 text-cyan-500",
+    pink: "bg-pink-50 text-pink-500",
+};
+
+const navListMenuItems = [
+
+    {
+        color: "orange",
+        icon: ChatBubbleOvalLeftIcon,
+        title: "Processor",
+        description: "News and writings, press releases, and resources",
+    },
+    {
+        color: "green",
+        icon: UsersIcon,
+        title: "Monitor",
+        description: "We are always looking for talented people. Join us!",
+    },
+    {
+        color: "blue-gray",
+        icon: FolderIcon,
+        title: "Ram",
+        description: "All the stuff that we dan from legal made us add.",
+    },
+    {
+        color: "purple",
+        icon: RocketLaunchIcon,
+        title: "PowerSupply",
+        description: "Checkout our products that helps a startup running.",
+    },
+    {
+        color: "teal",
+        icon: FaceSmileIcon,
+        title: "StorageUnit",
+        description: "Set of beautiful icons that you can use in your project.",
+    },
+    {
+        color: "cyan",
+        icon: PuzzlePieceIcon,
+        title: "MotherBoard",
+        description: "High quality UI Kits helps you to 2x faster.",
+    },
+
+];
+
+function NavListMenu() {
+    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
+    const renderItems = navListMenuItems.map(
+        ({ icon, title, color }, key) => (
+            <div key={key}>
+                <MenuItem className="flex items-center gap-3 rounded-lg">
+                    {/* <div className={`rounded-lg p-5 ${colors[color]}`}>
+                        {React.createElement(icon, {
+                            strokeWidth: 2,
+                            className: "h-6 w-6",
+                        })}
+                    </div> */}
+                    <div>
+                        <Link href={`/products/${title}`}>
+                            <Typography
+                                variant="h6"
+                                color="blue-gray"
+                                className="flex items-center text-sm"
+                            >
+                                {title}
+                            </Typography>
+
+                        </Link>
+
+
+                    </div>
+                </MenuItem>
+            </div>
+        )
+    );
+
+    return (
+        <React.Fragment>
+            <Menu
+                open={isMenuOpen}
+                handler={setIsMenuOpen}
+                offset={{ mainAxis: 20 }}
+                placement="bottom"
+                allowHover={true}
+            >
+                <MenuHandler>
+                    <Typography as="div" variant="small" className="font-normal">
+                        <ListItem
+                            className="flex items-center gap-2 py-2 pr-4"
+                            selected={isMenuOpen || isMobileMenuOpen}
+                            onClick={() => setIsMobileMenuOpen((cur) => !cur)}
+                        >
+
+                            Categories
+                            <ChevronDownIcon
+                                strokeWidth={2.5}
+                                className={`hidden h-3 w-3 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""
+                                    }`}
+                            />
+                            <ChevronDownIcon
+                                strokeWidth={2.5}
+                                className={`block h-3 w-3 transition-transform lg:hidden ${isMobileMenuOpen ? "rotate-180" : ""
+                                    }`}
+                            />
+                        </ListItem>
+                    </Typography>
+                </MenuHandler>
+                <MenuList className="hidden max-w-screen-xl rounded-xl lg:block">
+                    <ul className="grid grid-cols-4 gap-y-2">{renderItems}</ul>
+                </MenuList>
+            </Menu>
+            <div className="block lg:hidden">
+                <Collapse open={isMobileMenuOpen}>{renderItems}</Collapse>
+            </div>
+        </React.Fragment>
+    );
+}
+
+function NavList() {
+    return (
+        <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
+
+            <NavListMenu />
+
+        </List>
+    );
+}
 
 export default function NavBar() {
     const [openNav, setOpenNav] = React.useState(false);
@@ -22,238 +176,76 @@ export default function NavBar() {
     React.useEffect(() => {
         window.addEventListener(
             "resize",
-            () => window.innerWidth >= 960 && setOpenNav(false),
+            () => window.innerWidth >= 960 && setOpenNav(false)
         );
     }, []);
 
-    const NavItems = [
-        {
-            title: "Processor",
-            itemId: 1,
-            dropOptions: [
-                {
-                    title: "intel",
-                    id: 1
-                },
-                {
-                    title: "Ryzen",
-                    id: 2
-                },
-                {
-                    title: "Hp",
-                    id: 3
-                },
-            ]
-        },
-        {
-            title: "Monitor",
-            itemId: 2,
-            dropOptions: [
-                {
-                    title: "Lg",
-                    id: 1
-                },
-                {
-                    title: "sony",
-                    id: 2
-                },
-                {
-                    title: "Tcl",
-                    id: 3
-                },
-            ]
-        },
-        {
-            title: "MotherBoard",
-            itemId: 2,
-            dropOptions: [
-                {
-                    title: "Lg",
-                    id: 1
-                },
-                {
-                    title: "sony",
-                    id: 2
-                },
-                {
-                    title: "Tcl",
-                    id: 3
-                },
-            ]
-        },
-        {
-            title: "Ram",
-            itemId: 2,
-            dropOptions: [
-                {
-                    title: "Lg",
-                    id: 1
-                },
-                {
-                    title: "sony",
-                    id: 2
-                },
-                {
-                    title: "Tcl",
-                    id: 3
-                },
-            ]
-        },
-        {
-            title: "Power Supply Unit",
-            itemId: 2,
-            dropOptions: [
-                {
-                    title: "Lg",
-                    id: 1
-                },
-                {
-                    title: "sony",
-                    id: 2
-                },
-                {
-                    title: "Tcl",
-                    id: 3
-                },
-            ]
-        },
-        {
-            title: "Storage Device",
-            itemId: 2,
-            dropOptions: [
-                {
-                    title: "Lg",
-                    id: 1
-                },
-                {
-                    title: "sony",
-                    id: 2
-                },
-                {
-                    title: "Tcl",
-                    id: 3
-                },
-            ]
-        },
-        {
-            title: "Others",
-            itemId: 2,
-            dropOptions: [
-                {
-                    title: "Lg",
-                    id: 1
-                },
-                {
-                    title: "sony",
-                    id: 2
-                },
-                {
-                    title: "Tcl",
-                    id: 3
-                },
-            ]
-        },
-    ]
-
-    const navList = (
-        <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-            {NavItems.map((navItem) =>
-                <Menu key={navItem?.itemId} placement="bottom-start">
-                    <MenuHandler >
-                        <h2
-                            variant="small"
-                            color="blue-gray"
-                            className='cursor-pointer'>
-                            <span className="flex items-center text-blue-gray-900 font-sans">
-                                {navItem?.title}
-                                <ChevronDownIcon
-                                    strokeWidth={2.5}
-                                    className={`h-3.5 w-3.5 transition-transform 
-                                    }`}
-                                />
-                            </span>
-
-                        </h2>
-                    </MenuHandler>
-                    <MenuList>
-                        {
-                            navItem?.dropOptions?.map((dropOption) =>
-                                <MenuItem className=" font-sans" key={dropOption?.id}>{dropOption?.title}</MenuItem>
-                            )
-                        }
-
-                    </MenuList>
-                </Menu>
-            )
-            }
-        </ul>
-    );
-
     return (
-        <Navbar className="mx-auto  py-2 px-4 lg:px-8 lg:py-4">
-            <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
+        <Navbar className="mx-auto max-w-screen-xl px-4 py-2">
+            <div className="flex items-center justify-between text-blue-gray-900">
                 <Link href={'/'}>
                     <Typography
 
-                        className="mr-4 cursor-pointer py-1.5 font-medium font-sans"
-
+                        href="#"
+                        variant="h6"
+                        className="mr-4 cursor-pointer py-1.5 lg:ml-2"
                     >
-                        PC Builder
+                        PC BUILD
                     </Typography>
                 </Link>
 
-                <div className="hidden lg:block">{navList}</div>
+                <div className="hidden lg:block">
+                    <NavList />
+                </div>
+                <div className="flex gap-3">
 
-                <Link href={'/pcbuilder'}>
-                    <Button variant="outlined" size="sm" className="hidden lg:inline-block ">
-                        <span >PC BUILDER</span>
-                    </Button>
-                </Link>
+
+                    <Link href={'/pcbuilder'}>
+                        <Button variant="outlined" size="sm" className="hidden lg:inline-block ">
+                            <span >PC BUILDER</span>
+                        </Button>
+                    </Link>
+                    <div className="hidden gap-2 lg:flex">
+                        <Button variant="text" size="sm" color="blue-gray">
+                            Sign In
+                        </Button>
+                        <Button variant="gradient" size="sm">
+                            Sign Up
+                        </Button>
+                    </div>
+                </div>
                 <IconButton
                     variant="text"
-                    className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-                    ripple={false}
+                    color="blue-gray"
+                    className="lg:hidden"
                     onClick={() => setOpenNav(!openNav)}
                 >
                     {openNav ? (
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            className="h-6 w-6"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M6 18L18 6M6 6l12 12"
-                            />
-                        </svg>
+                        <XMarkIcon className="h-6 w-6" strokeWidth={2} />
                     ) : (
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M4 6h16M4 12h16M4 18h16"
-                            />
-                        </svg>
+                        <Bars3Icon className="h-6 w-6" strokeWidth={2} />
                     )}
                 </IconButton>
             </div>
             <Collapse open={openNav}>
-                <div className="container mx-auto">
-                    {navList}
-                    <Button variant="outlined" size="sm" fullWidth className="mb-2">
-                        <span>PC BUILDER</span>
+                <NavList />
+                <div>
+                    <Link href={'/pcbuilder'}>
+                        <Button variant="outlined" size="sm" className=" lg:hidden ">
+                            <span >PC BUILDER</span>
+                        </Button>
+                    </Link>
+                </div>
+                <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
+                    <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
+                        Sign In
+                    </Button>
+                    <Button variant="gradient" size="sm" fullWidth>
+                        Sign Up
                     </Button>
                 </div>
+
+
             </Collapse>
         </Navbar>
     );
