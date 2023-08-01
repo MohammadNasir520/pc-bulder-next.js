@@ -14,6 +14,7 @@ import {
     MenuList,
     MenuItem,
     Chip,
+    Avatar,
 } from "@material-tailwind/react";
 import {
     ChevronDownIcon,
@@ -32,6 +33,7 @@ import {
     GiftIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react"
 
 const colors = {
     blue: "bg-blue-50 text-blue-500",
@@ -172,6 +174,9 @@ function NavList() {
 
 export default function NavBar() {
     const [openNav, setOpenNav] = React.useState(false);
+    const { data: session } = useSession()
+
+    console.log('session', session)
 
     React.useEffect(() => {
         window.addEventListener(
@@ -205,14 +210,38 @@ export default function NavBar() {
                             <span >PC BUILDER</span>
                         </Button>
                     </Link>
-                    <div className="hidden gap-2 lg:flex">
-                        <Button variant="text" size="sm" color="blue-gray">
-                            Sign In
-                        </Button>
-                        <Button variant="gradient" size="sm">
-                            Sign Up
-                        </Button>
-                    </div>
+
+                    {
+                        !session?.user
+                            ?
+                            <div className="hidden gap-2 lg:flex">
+                                <Button
+                                    onClick={() => signIn('github')}
+                                    variant="text" size="sm" color="blue-gray">
+                                    Sign In
+                                </Button>
+                                <Button variant="gradient" size="sm">
+                                    Sign Up
+                                </Button>
+                            </div>
+                            :
+                            <div>
+                                <Button
+                                    onClick={() => signOut()}
+                                    className="hidden lg:block" variant="gradient" size="sm">
+                                    Sign out
+                                </Button>
+                            </div>
+                    }
+                    {session?.user?.image ?
+                        <Avatar src={session?.user?.image} alt="avatar" size="sm" /> :
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+
+                    }
+
+
                 </div>
                 <IconButton
                     variant="text"
@@ -236,15 +265,30 @@ export default function NavBar() {
                         </Button>
                     </Link>
                 </div>
-                <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-                    <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
-                        Sign In
-                    </Button>
-                    <Button variant="gradient" size="sm" fullWidth>
-                        Sign Up
-                    </Button>
-                </div>
+                {
+                    !session?.user ?
+                        <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
+                            <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
+                                Sign In
+                            </Button>
+                            <Button variant="gradient" size="sm" fullWidth>
+                                Sign Up
+                            </Button>
+                        </div> :
+                        <Button
+                            onClick={() => signOut()}
+                            className="lg:hidden my-2" variant="gradient" size="sm">
+                            Sign out
+                        </Button>
+                }
 
+                {session?.user?.image ?
+                    <Avatar src={session?.user?.image} alt="avatar" size="sm" /> :
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+
+                }
 
             </Collapse>
         </Navbar>

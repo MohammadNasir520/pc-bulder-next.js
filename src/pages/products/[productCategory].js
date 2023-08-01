@@ -3,7 +3,7 @@ import ProductCard from "@/components/ProductCard";
 const Products = ({ products }) => {
     console.log(products)
     return (
-        <div className="min-h-screen grid md:grid-cols-2 lg:grid-cols-3">
+        <div className="min-h-screen grid md:grid-cols-2 lg:grid-cols-3 place-items-center">
 
             {
                 products?.map((product, i) => <ProductCard
