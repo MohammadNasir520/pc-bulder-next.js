@@ -157,7 +157,7 @@ const PcBuilder = () => {
                     disabled={components.length < 6 ? true : false}
                     className="disabled:bg-green-300 bg-green-700 mx-auto my-3"
                 >
-                    Build you Pc
+                    complete Build your Pc
                 </Button>
             </div>
         </div>

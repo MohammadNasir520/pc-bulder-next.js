@@ -1,18 +1,23 @@
+import SingleReviewCard from "@/components/SingleReviewCard";
+import { useGetAllReviewsQuery } from "@/redux/api/ReviewApi/reviewApi";
+
 import { Typography } from "@material-tailwind/react";
 
-const productDetailsCard = ({ product }) => {
+const ProductDetailsCard = ({ product }) => {
     console.log(product)
 
-    const { name, image, category, price, status, rating } = product
+    const { name, image, category, price, status, rating, description, keyFeature } = product
+    const { data: reviews } = useGetAllReviewsQuery(null);
+
     return (
 
         <div className="h-screen relative">
 
 
             <div className="w-full flex justify-center mt-6 ">
-                <div className="relative flex ju flex-col w-full justify-center max-w-[48rem] md:flex-row rounded-sm bg-white bg-clip-border text-gray-700 shadow-md">
+                <div className="relative flex  flex-col w-full justify-center max-w-[55rem] md:flex-row rounded-sm bg-white bg-clip-border text-gray-700 shadow-md">
                     <div className="relative m-0 md:w-2/5  flex justify-center shrink-0 overflow-hidden rounded-sm rounded-r-none bg-white bg-clip-border text-gray-700">
-                        <img alt="image" className="max-w-full max-h-full" src={`${image}`} />
+                        <img alt="image" className="max-w-full max-h-[400px]" src={`${image}`} />
                     </div>
                     <div className="p-6 flex flex-col justify-center w-full">
 
@@ -86,18 +91,33 @@ const productDetailsCard = ({ product }) => {
                                 {status}
                             </h3>
                         </div>
+                        <div className="my-1">
+                            <p className="font-semibold">Key Features</p>
+                            <p>Model:{keyFeature?.model}</p>
+                            <p>speed:{keyFeature?.speed}</p>
+                        </div>
                         <div>
-                            <p> The processor is the computers central unit, executing instructions and calculations. It comprises the ALU, control unit, registers, and cache. Multiple cores enable parallel processing, while cache stores frequently accessed data for faster execution. Its efficiency influences overall computer performance and user experience.</p>
+                            <p>{description}</p>
                         </div>
                     </div>
                 </div>
 
             </div>
+            {/* review show card  */}
+            {reviews?.data.length > 0 ? (
+                reviews?.data?.map((review, i) => {
+                    return <SingleReviewCard key={i} review={review}></SingleReviewCard>;
+                })
+            ) : (
+                <div className=" flex justify-center mt-5 text-2xl font-sans font-bold">
+                    <h1>No Review Yet, Please add</h1>
+                </div>
+            )}
         </div>
     );
 };
 
-export default productDetailsCard;
+export default ProductDetailsCard;
 
 export const getStaticPaths = async () => {
     const res = await fetch("http://localhost:5000/api/v1/products/")
@@ -121,3 +141,4 @@ export const getStaticProps = async (context) => {
         }
     }
 }
+

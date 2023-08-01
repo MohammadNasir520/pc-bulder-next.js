@@ -2,7 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/products/[productCategory]": "pages/products/[productCategory].js",
-  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
-  "/pcbuilder": "pages/pcbuilder.js"
+  "/": "pages/index.js",
+  "/products/[productCategory]": "pages/products/[productCategory].js"
 }
