@@ -12,11 +12,6 @@
   ],
   "rootMainFiles": [],
   "pages": {
-    "/": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/index.js"
-    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -27,10 +22,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/productComponents/[category]": [
+    "/pcbuilder": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/productComponents/[category].js"
+      "static/chunks/pages/pcbuilder.js"
+    ],
+    "/products/[productCategory]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/products/[productCategory].js"
     ]
   },
   "ampFirstPages": []
