@@ -221,9 +221,11 @@ export default function NavBar() {
                                     variant="text" size="sm" color="blue-gray">
                                     Sign In
                                 </Button>
-                                {/* <Button variant="gradient" size="sm">
+                                <Button
+                                    onClick={() => signIn('github')}
+                                    variant="gradient" size="sm">
                                     Sign Up
-                                </Button> */}
+                                </Button>
                             </div>
                             :
                             <div>
