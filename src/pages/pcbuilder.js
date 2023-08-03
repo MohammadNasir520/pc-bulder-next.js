@@ -2,6 +2,7 @@ import { Button } from "@material-tailwind/react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from 'react-hot-toast';
+import Image from "next/image";
 
 
 const PcBuilder = () => {
@@ -46,19 +47,19 @@ const PcBuilder = () => {
     return (
         <div>
 
-            <div className="overflow-hidden min-h-screen mx-auto border border-gray-200 shadow-md m-5">
-                <table className="w-4/5 mx-auto border-collapse bg-white text-left text-sm text-gray-500">
+            <div className="overflow-hidden min-h-screen mx-auto border border-gray-200 shadow-md md:m-5">
+                <table className="w-full md:w-4/5 mx-auto border-collapse bg-white text-left text-sm text-gray-500">
                     <thead className="bg-gray-50">
                         <tr>
-                            <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+                            <th scope="col" className=" text-xs  md:text-sm md:px-6 py-4 font-medium text-gray-900">
                                 categories
                             </th>
-                            <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+                            <th scope="col" className="text-xs md:text-sm md:px-6 py-4 font-medium text-gray-900">
                                 Added Components
                             </th>
 
 
-                            <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+                            <th scope="col" className="text-xs md:text-sm md:px-6 py-4 font-medium text-gray-900">
                                 choose
                             </th>
                         </tr>
@@ -66,9 +67,11 @@ const PcBuilder = () => {
                     <tbody className="divide-y divide-gray-100 border-t border-gray-100">
                         {categories?.map((category) => (
                             <tr key={category?.id} className="hover:bg-gray-50">
-                                <th className="flex gap-3 px-6 py-4 font-normal items-center text-gray-900">
+                                <th className="flex gap-3 md:px-6 py-4 font-normal items-center text-gray-900">
                                     <div className="h-24 w-24">
-                                        <img
+                                        <Image
+                                            width={200}
+                                            height={200}
                                             className="h-full w-full  object-cover object-center"
                                             src={category.image}
                                             alt=""
@@ -77,7 +80,7 @@ const PcBuilder = () => {
                                     </div>
                                     <div className="text-sm">
                                         <div className="font-semibold">{category?.title}</div>
-                                        <div className="font-medium text-gray-700">Required</div>
+                                        <div className="font-medium text-xs md:text-sm text-gray-700">Required</div>
                                     </div>
                                 </th>
 
@@ -87,10 +90,12 @@ const PcBuilder = () => {
                                         component =>
 
                                             <>
-                                                <td className="px-6 py-4 ">
+                                                <td className="md:px-6 py-4 ">
                                                     <div className="flex items-center gap-1">
                                                         <div className="h-24 w-24">
-                                                            <img
+                                                            <Image
+                                                                width={200}
+                                                                height={200}
                                                                 className="h-full w-full  object-cover object-center"
                                                                 src={component.image} alt="" />
                                                         </div>
@@ -117,7 +122,7 @@ const PcBuilder = () => {
 
                                                     </div>
 
-                                                    <span className="inline-flex items-center    py-1  font-semibold">
+                                                    <span className="text-xs md:text-sm inline-flex items-center    py-1  font-semibold">
                                                         {(component?.name)}
                                                     </span>
 
@@ -129,7 +134,7 @@ const PcBuilder = () => {
                                     <>
                                         <td>
                                             <h1
-                                                className="text-md text-gray-700 font-semibold"
+                                                className="text-xs md:text-sm text-gray-700 font-semibold"
                                             > please select {category.title} First
                                             </h1>
                                         </td>
@@ -137,7 +142,7 @@ const PcBuilder = () => {
                                 }
 
 
-                                <td className="px-6 py-4">
+                                <td className="md:px-6 py-4">
                                     <div className="flex gap-2">
                                         <Link href={`/productComponents/${category?.title}`}>
                                             <Button size="sm">Choose</Button>

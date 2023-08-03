@@ -1,6 +1,7 @@
 
 import { addToStor } from "@/redux/feature/component/componentSlice";
 import { Button } from "@material-tailwind/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -15,7 +16,7 @@ const CategoryComponents = ({ components }) => {
     return (
 
         <div className="overflow-hidden min-h-screen mx-auto border border-gray-200 shadow-md m-5">
-            <table className="w-1/2 mx-auto border-collapse bg-white text-left text-sm  text-gray-800 font-sans">
+            <table className="md:w-1/2 mx-auto border-collapse p-1 bg-white text-left text-sm  text-gray-800 font-sans">
                 <thead className="bg-gray-50 w-full ">
                     <tr className="w-full mx-auto">
                         <th scope="col" className="px-6 py-4 font-medium text-gray-900">
@@ -34,16 +35,18 @@ const CategoryComponents = ({ components }) => {
                 <tbody className="divide-y divide-gray-100 border-t border-gray-100">
                     {components?.map((component) => (
                         <tr key={component?.id} className="hover:bg-gray-50">
-                            <th className="flex gap-3 px-6 py-4 font-normal items-center ">
+                            <th className="flex md:gap-3 md:px-6 py-4 font-normal items-center ">
                                 <div className="h-36 w-32">
-                                    <img
+                                    <Image
+                                        width={250}
+                                        height={250}
                                         className="h-full w-full  object-cover object-center"
                                         src={component.image}
                                         alt=""
                                     />
 
                                 </div>
-                                <div className="text-sm pl-3">
+                                <div className="text-xs md:text-sm md:pl-3 pl-1">
                                     <div className="font-semibold">{component?.name}</div>
 
                                     <div className="font-medium flex items-center gap-x-1">
