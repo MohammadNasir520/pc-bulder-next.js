@@ -32,9 +32,9 @@ export default function Home({ products }) {
 export const getStaticProps = async () => {
 
 
-  const res = await fetch(`http://localhost:5000/api/v1/products`)
+  const res = await fetch(`https://pc-builder-backend-omega.vercel.app/api/v1/products`)
   const data = await res.json()
-  console.log(data)
+
   return {
     props: {
       products: data?.data

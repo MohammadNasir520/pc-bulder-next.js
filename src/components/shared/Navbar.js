@@ -94,15 +94,16 @@ function NavListMenu() {
     const renderItems = navListMenuItems.map(
         ({ icon, title, color }, key) => (
             <div key={key}>
-                <MenuItem className="flex items-center gap-3 rounded-lg">
-                    {/* <div className={`rounded-lg p-5 ${colors[color]}`}>
+                <Link href={`/products/${title}`}>
+                    <MenuItem className="flex items-center gap-3 rounded-lg">
+                        {/* <div className={`rounded-lg p-5 ${colors[color]}`}>
                         {React.createElement(icon, {
                             strokeWidth: 2,
                             className: "h-6 w-6",
                         })}
                     </div> */}
-                    <div>
-                        <Link href={`/products/${title}`}>
+
+                        <div>
                             <Typography
                                 variant="h6"
                                 color="blue-gray"
@@ -111,11 +112,11 @@ function NavListMenu() {
                                 {title}
                             </Typography>
 
-                        </Link>
 
 
-                    </div>
-                </MenuItem>
+                        </div>
+                    </MenuItem>
+                </Link>
             </div>
         )
     );

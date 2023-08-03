@@ -108,7 +108,7 @@ export default CategoryComponents;
 export const getServerSideProps = async (context) => {
     const { params } = context
     console.log(params.productId)
-    const res = await fetch(`http://localhost:5000/api/v1/products/categories/${params.category}`)
+    const res = await fetch(`https://pc-builder-backend-omega.vercel.app/api/v1/products/categories/${params.category}`)
     const data = await res.json()
     console.log(data)
     return {

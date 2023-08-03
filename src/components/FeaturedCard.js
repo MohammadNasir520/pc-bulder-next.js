@@ -3,7 +3,7 @@ import {
     CardHeader,
     CardBody,
     Typography,
-    Avatar,
+
 } from "@material-tailwind/react";
 import Link from "next/link";
 
@@ -42,50 +42,56 @@ export default function FeaturedCard() {
     ]
     return (
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2 place-items-center space-y-6">
-            {
-                FeaturedItems.map((item) =>
+        <div className="my-7" >
+            <div className="flex justify-center my-4 text-2xl">
+
+                <h1 className="font-semibold font-sans ">Features</h1>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2 place-items-center space-y-6">
+                {
+                    FeaturedItems.map((item) =>
 
 
-                    <Link
-                        key={item?.id}
-                        href={`/products/${item?.title}`}>
+                        <Link
+                            key={item?.id}
+                            href={`/products/${item?.title}`}>
 
 
-                        <Card
-                            shadow={false}
-                            className="relative grid h-[12rem]  w-[17rem] items-end justify-center overflow-hidden text-center"
-                        >
-                            <CardHeader
-                                floated={false}
+                            <Card
                                 shadow={false}
-                                color="transparent"
-                                style={{
-                                    backgroundImage: `url('${item.image}')`
-
-                                }}
-                                className="absolute inset-0 m-0 h-full w-full rounded-none  bg-cover object-cover bg-center"
+                                className="relative grid h-[12rem]  w-[17rem] items-end justify-center overflow-hidden text-center"
                             >
-                                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
-                            </CardHeader>
-                            <CardBody className="relative py-1 px-6 md:px-12">
-                                <Typography
-                                    variant="h2"
-                                    color="white"
-                                    className="mb-6 font-medium leading-[1.5]"
+                                <CardHeader
+                                    floated={false}
+                                    shadow={false}
+                                    color="transparent"
+                                    style={{
+                                        backgroundImage: `url('${item.image}')`
+
+                                    }}
+                                    className="absolute inset-0 m-0 h-full w-full rounded-none  bg-cover object-cover bg-center"
                                 >
-                                    {item?.title}
-                                </Typography>
+                                    <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
+                                </CardHeader>
+                                <CardBody className="relative py-1 px-6 md:px-12">
+                                    <Typography
+                                        variant="h2"
+                                        color="white"
+                                        className="mb-6 font-medium leading-[1.5]"
+                                    >
+                                        {item?.title}
+                                    </Typography>
 
 
-                            </CardBody>
-                        </Card>
+                                </CardBody>
+                            </Card>
 
-                    </Link>
-                )
-            }
+                        </Link>
+                    )
+                }
 
+            </div>
         </div>
-
     );
 }

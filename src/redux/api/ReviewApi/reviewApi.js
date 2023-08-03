@@ -6,9 +6,13 @@ const reviewsApi = api.injectEndpoints({
 
       query: () => "/reviews",
     }),
+    getSingleProduct: builder.query({
+
+      query: (id) => `/products/${id}`,
+    }),
   }),
 });
 
 export const {
-  useGetAllReviewsQuery,
+  useGetAllReviewsQuery, useGetSingleProductQuery
 } = reviewsApi;

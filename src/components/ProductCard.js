@@ -13,9 +13,11 @@ const ProductCard = ({ product }) => {
         <div>
             <div className="my-2  ">
                 <div className="relative flex min-w-[350px] max-w-[20rem] min-h  mx-auto flex-col rounded-xl bg-blue-gray-50 bg-clip-border text-gray-700 shadow-2xl">
-                    <Link href={`/productdetails/${_id}`}>
+                    <Link href={`/productDetailsPage/${_id}`}>
                         <div className="relative m-0 p-4 pb-1 flex justify-center overflow-hidden rounded-none bg-transparent bg-clip-border text-gray-700 shadow-none">
-                            <img
+                            <Image
+                                width={310}
+                                height={380}
                                 className=" min-h-[300px] max-h-[380px] min-w-[280px] max-w-[20rem]   rounded-sm "
                                 src={image}
                                 alt="product"
