@@ -12,8 +12,12 @@
       "page": "/",
       "matchers": [
         {
-          "regexp": "^/.*$",
-          "originalSource": "/:path*"
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/pcbuilder(.json)?[\\/#\\?]?$",
+          "originalSource": "/pcbuilder"
+        },
+        {
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/productComponents\\/Processor(.json)?[\\/#\\?]?$",
+          "originalSource": "/productComponents/Processor"
         }
       ],
       "wasm": [],
