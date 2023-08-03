@@ -345,7 +345,7 @@ function NavBar() {
                                 ]
                             }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_material_tailwind_react__WEBPACK_IMPORTED_MODULE_2__.Button, {
-                                    onClick: ()=>(0,next_auth_react__WEBPACK_IMPORTED_MODULE_5__.signOut)(),
+                                    onClick: ()=>((0,next_auth_react__WEBPACK_IMPORTED_MODULE_5__.signOut)(), router.push("/")),
                                     className: "hidden lg:block",
                                     variant: "gradient",
                                     size: "sm",

@@ -221,14 +221,14 @@ export default function NavBar() {
                                     variant="text" size="sm" color="blue-gray">
                                     Sign In
                                 </Button>
-                                <Button variant="gradient" size="sm">
+                                {/* <Button variant="gradient" size="sm">
                                     Sign Up
-                                </Button>
+                                </Button> */}
                             </div>
                             :
                             <div>
                                 <Button
-                                    onClick={() => signOut()}
+                                    onClick={() => (signOut(), router.push("/"))}
                                     className="hidden lg:block" variant="gradient" size="sm">
                                     Sign out
                                 </Button>
